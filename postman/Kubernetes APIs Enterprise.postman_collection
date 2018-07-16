@@ -1,0 +1,235 @@
+{
+	"id": "f9b8cd21-201d-4247-037b-dc0a9dfd5ce2",
+	"name": "Kubernetes APIs Enterprise",
+	"description": "",
+	"order": [
+		"879f2286-9cb1-0f9b-89ab-ef0f4525cc83",
+		"0d6d813d-745a-6fe7-f9eb-458f1445a63c",
+		"47dbbd16-9eb2-a130-c63f-70934c8b8fab",
+		"4deb2f89-895e-0382-f3fa-dd9de347138c",
+		"0144a002-aaa4-3d0f-a62b-caede5bd50bd",
+		"e0af8e05-0977-5559-0b15-c56dfbd3dae2"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1528293897517,
+	"owner": "3095439",
+	"public": false,
+	"requests": [
+		{
+			"id": "0144a002-aaa4-3d0f-a62b-caede5bd50bd",
+			"headers": "",
+			"headerData": [
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "10.195.77.177:8081/api/v1/namespaces/istio-system/pods",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "f9b8cd21-201d-4247-037b-dc0a9dfd5ce2",
+			"data": null,
+			"dataMode": "params",
+			"name": "K8s/api/v1/namespaces/$NAMESPACE/pods",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1528394131432,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "0d6d813d-745a-6fe7-f9eb-458f1445a63c",
+			"headers": "",
+			"headerData": [
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "10.195.77.177:8081/api/v1/namespaces",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "f9b8cd21-201d-4247-037b-dc0a9dfd5ce2",
+			"data": null,
+			"dataMode": "params",
+			"name": "K8s/api/v1/namespaces",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1528293960671,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "47dbbd16-9eb2-a130-c63f-70934c8b8fab",
+			"headers": "",
+			"headerData": [
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "10.195.77.177:8081/api/v1/pods",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "f9b8cd21-201d-4247-037b-dc0a9dfd5ce2",
+			"data": null,
+			"dataMode": "params",
+			"name": "K8s/api/v1/pods",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1528293977489,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "4deb2f89-895e-0382-f3fa-dd9de347138c",
+			"headers": "",
+			"headerData": [
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "10.195.77.177:8081/api/v1/services",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "f9b8cd21-201d-4247-037b-dc0a9dfd5ce2",
+			"data": null,
+			"dataMode": "params",
+			"name": "K8s/api/v1/services",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1528293994463,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "879f2286-9cb1-0f9b-89ab-ef0f4525cc83",
+			"headers": "",
+			"headerData": [
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "10.195.77.177:8081/api",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1528828703604,
+			"name": "K8s/api",
+			"description": "",
+			"collectionId": "f9b8cd21-201d-4247-037b-dc0a9dfd5ce2",
+			"responses": []
+		},
+		{
+			"id": "e0af8e05-0977-5559-0b15-c56dfbd3dae2",
+			"headers": "",
+			"headerData": [],
+			"url": "http://10.195.77.177:32100/zipkin/api/v1/traces?annotationQuery=&lii\nmit=10&lookback=3600000&minDuration=&serviceName=productpage&sortOrder=timestampp\n-desc",
+			"queryParams": [
+				{
+					"key": "annotationQuery",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "lii\nmit",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "lookback",
+					"value": "3600000",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "minDuration",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "serviceName",
+					"value": "productpage",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sortOrder",
+					"value": "timestampp\n-desc",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "f9b8cd21-201d-4247-037b-dc0a9dfd5ce2",
+			"data": null,
+			"dataMode": "params",
+			"name": "Zipkin GET",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1528829806091,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}

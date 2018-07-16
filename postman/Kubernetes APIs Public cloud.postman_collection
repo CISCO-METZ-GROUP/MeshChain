@@ -1,0 +1,231 @@
+{
+	"id": "3ca10825-0f7b-5f16-2e18-fe96252ecfdd",
+	"name": "Kubernetes APIs Public cloud",
+	"description": "",
+	"order": [
+		"f4699e57-0d1a-7dd0-0f19-97f6bc08cd88",
+		"9df0575a-05b3-4c7c-8d05-036004da5942",
+		"9fa2ab12-1dfb-a8b4-60da-46e48d088464",
+		"a3c2df57-638e-0c1e-3c51-8a96ddc4a909",
+		"c0d84fce-8633-f541-debe-a91d1d56089d",
+		"9e3bf2d3-35b2-c1eb-92ca-4c6bc24b1d46"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1528828691632,
+	"owner": "3095439",
+	"public": false,
+	"requests": [
+		{
+			"id": "9df0575a-05b3-4c7c-8d05-036004da5942",
+			"headers": "",
+			"headerData": [
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "10.195.77.180:8081/api/v1/namespaces",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1528828763926,
+			"name": "K8s/api/v1/namespaces",
+			"description": "",
+			"collectionId": "3ca10825-0f7b-5f16-2e18-fe96252ecfdd",
+			"responses": []
+		},
+		{
+			"id": "9e3bf2d3-35b2-c1eb-92ca-4c6bc24b1d46",
+			"headers": "",
+			"headerData": [],
+			"url": "http://10.195.77.180:32100/zipkin/api/v1/traces?annotationQuery=&lii\nmit=10&lookback=3600000&minDuration=&serviceName=productpage&sortOrder=timestampp\n-desc",
+			"queryParams": [
+				{
+					"key": "annotationQuery",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "lii\nmit",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "lookback",
+					"value": "3600000",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "minDuration",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "serviceName",
+					"value": "productpage",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sortOrder",
+					"value": "timestampp\n-desc",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3ca10825-0f7b-5f16-2e18-fe96252ecfdd",
+			"data": null,
+			"dataMode": "params",
+			"name": "Zipkin GET",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1528829826630,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "9fa2ab12-1dfb-a8b4-60da-46e48d088464",
+			"headers": "",
+			"headerData": [
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "10.195.77.180:8081/api/v1/pods",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1528828768712,
+			"name": "K8s/api/v1/pods",
+			"description": "",
+			"collectionId": "3ca10825-0f7b-5f16-2e18-fe96252ecfdd",
+			"responses": []
+		},
+		{
+			"id": "a3c2df57-638e-0c1e-3c51-8a96ddc4a909",
+			"headers": "",
+			"headerData": [
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "10.195.77.180:8081/api/v1/services",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1528828773752,
+			"name": "K8s/api/v1/services",
+			"description": "",
+			"collectionId": "3ca10825-0f7b-5f16-2e18-fe96252ecfdd",
+			"responses": []
+		},
+		{
+			"id": "c0d84fce-8633-f541-debe-a91d1d56089d",
+			"headers": "",
+			"headerData": [
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "10.195.77.180:8081/api/v1/namespaces/istio-system/pods",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1528828779150,
+			"name": "K8s/api/v1/namespaces/$NAMESPACE/pods",
+			"description": "",
+			"collectionId": "3ca10825-0f7b-5f16-2e18-fe96252ecfdd",
+			"responses": []
+		},
+		{
+			"id": "f4699e57-0d1a-7dd0-0f19-97f6bc08cd88",
+			"headers": "",
+			"headerData": [
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "10.195.77.180:8081/api",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1528828758285,
+			"name": "K8s/api",
+			"description": "",
+			"collectionId": "3ca10825-0f7b-5f16-2e18-fe96252ecfdd",
+			"responses": []
+		}
+	]
+}

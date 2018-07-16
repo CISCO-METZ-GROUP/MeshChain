@@ -1,0 +1,58 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: geth
+  namespace: blockchain
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: node
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      containers:
+      - name: geth
+        image: a7mdalz/meshchain-geth1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3010
+        - containerPort: 3000
+        - containerPort: 8090
+        - containerPort: 8545
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: geth
+  namespace: blockchain
+spec:
+  type: NodePort
+  ports:
+  - name: app
+    port: 3010
+    nodePort: 30100
+  - name: geth
+    port: 3000
+    nodePort: 30001
+  - name: geth1
+    port: 3000
+    protocol: UDP
+    nodePort: 30001
+  - name: test
+    port: 8090
+    nodePort: 32200
+  - name: ipc
+    port: 8545
+    nodePort: 31100
+  selector:
+    app: node
+---
