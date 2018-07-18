@@ -14,7 +14,8 @@ A distributed tracing solution for service mesh using BlockChain.
 * [Architecture](#architecture)
 * [Advantages](#advantages)
 * [Installation](#installation)
-* [Cisco product Opportunities](#cisco-product-opportunities)
+* [Usage](#Usage)
+* [License](#License)
 
 # Problem
 In a multi-cloud environment, observability is important between hybrid cloud parties for troubleshooting, optimization, and analytics. Applications are broken down into micro-services, which could be deployed on multiple hybrid cloud networks. Each party needs a way to verify that the applications deployed on the other party are running smoothly. Moreover, this verification data should be shared between the environments in an immutable storage.
