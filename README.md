@@ -51,11 +51,11 @@ Open source software used:
 ```
 git clone https://github.com/CISCO-METZ-GROUP/MeshChain.git
 ```
-#### 1. Install Kubernetes & WeavNet plug-in by following [Kubernetes Installation guide](https://kubernetes.io/docs/tasks/tools/install-kubeadm), or follow these steps.
+#### 2. Install Kubernetes & WeavNet plug-in by following [Kubernetes Installation guide](https://kubernetes.io/docs/tasks/tools/install-kubeadm), or follow these steps.
 
-* You have to install Kubernetes on all the machines (VMs/instances) used in the environment
+* You have to install Kubernetes on all the machines (VMs/instances) used in the environment.
 
-Install Docker
+Install Docker:
 ```
 sudo su
 apt-get update
@@ -63,22 +63,22 @@ apt-get install -y docker.io
 ```
 * If you have proxies on your VMs you need to configure the proxies in docker by following [this link](https://docs.docker.com/config/daemon/systemd/) under the HTTP/HTTPS section.
 
-If your system uses proxies, you need to inject the proxies to docker.
+If your system uses proxies, you need to inject the proxies to docker:
 ```
 mkdir -p /etc/systemd/system/docker.service.d
 vim /etc/systemd/system/docker.service.d/http-proxy.conf
 ```
-Insert the next lines in the above .conf file
+Insert the next lines in the above .conf file:
 ```
 [Service]
 Environment="HTTP_PROXY=SERVER_URL:PORT" "http_proxy=SERVER_URL:PORT" "https_proxy=SERVER_URL:PORT" "HTTPS_PROXY=SERVER_URL:PORT" "FTP_PROXY=SERVER_URL:PORT" "ftp_proxy=SERVER_URL:PORT"
 ```
-Restart Docker
+Restart Docker:
 ```
 systemctl daemon-reload
 systemctl restart docker
 ```
-Install kubelet, kubectl, and kubeadm
+Install kubelet, kubectl, and kubeadm:
 ```
 apt-get update && apt-get install -y apt-transport-https curl
 
@@ -97,13 +97,12 @@ apt-get install -y kubelet kubeadm kubectl
 If the interface you are using for Kubernetes management traffic (for example, the
 IP address used for `kubeadm join`) is not the one that contains the default
 route out of the host, you need to specify the management node IP address in
-the Kubelet config file. Add the following line to
+the Kubelet config file. Add the following line to:
 (`/etc/systemd/system/kubelet.service.d/10-kubeadm.conf`):
 ```
 Environment="KUBELET_EXTRA_ARGS=--fail-swap-on=false --feature-gates HugePages=false --node-ip=<node-management-ip-address>"
 ```
-For Example:
-if the VM's IP address is 10.10.10.10, the above line would be:
+For Example, if the VM's IP address is 10.10.10.10, the above line would be:
 ```
 Environment="KUBELET_EXTRA_ARGS=--fail-swap-on=false --feature-gates HugePages=false --node-ip=10.10.10.10"
 ```
@@ -155,7 +154,7 @@ mcPublicCloud1     Ready     master    4m        v1.10.4
 mcPublicCloud2     Ready     <none>    2m        v1.10.4
 ```
 #### 3. Install Istio, in this project, I used Istio 0.7.1. 
-* Do the same process in the master of both clusters
+* Do the same process in the master of both clusters.
 
 Download Istio files by running:
 ```
@@ -163,7 +162,7 @@ wget https://github.com/istio/istio/releases/download/0.7.1/istio-0.7.1-linux.ta
 tar -xzf istio-0.7.1-linux.tar.gz 
 rm istio-0.7.1-linux.tar.gz 
 ```
-Start installing Istio
+Start installing Istio:
 ```
 cd istio-0.7.1
 export PATH=$PWD/bin:$PATH
@@ -175,7 +174,7 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
 kubectl label node <master-node-name> master=app
 # For example node name mcEnterprise1
 ```
-Apply Istio to kubernetes
+Apply Istio to kubernetes:
 ```
 kubectl apply -f MeshChain/K8s/istio.yaml
 ```
@@ -227,7 +226,7 @@ istio-mixer     ClusterIP      10.109.110.193   <none>        9091/TCP,15004/TCP
 istio-pilot     ClusterIP      10.101.116.201   <none>        15003/TCP,15005/TCP,15007/TCP,15010/TCP,8080/TCP,9093/TCP,443/TCP   2d
 ```
 As you can see, the ```istio-ingress``` serivce is exposed on ```31515``` for the enterprise cluster. Open a web browser and call the following IP address ```<The-Master's-IP>:31515/productpage``` to access the application. Do the same procedure to get the other cluster's port number. You will need the IP address and the port number to initiate the traces on each cluster.
-* This part would be used after installing Geth node
+* This part would be used after installing Geth node.
 #### 4. Installing Zipkin
 Run the following comand to install Zipkin
 ```
@@ -248,20 +247,18 @@ On Public cloud cluster, run:
 ```
 kubectl apply -f MeshChain/K8s/MC2.yaml 
 ```
-Then to make sure that the pod is running, run the following
 * Ports that are exposed by the containers: ```30001``` for geth, and ```30100``` for the web3.js server
-
+Then to make sure that the pod is running, run the following command
 ```
 kubectl get pods -n blockchain -owide
 ```
-The output should be similar to this
+The output should be similar to this:
 ```
 NAME                     READY     STATUS    RESTARTS   AGE       IP          NODE
 geth-766f8b47db-4vphq    1/1       Running   0          3m        10.44.0.6   mcEnterprise2
 zipkin-67c6d7d4c-72zfl   1/1       Running   0          45m       10.32.0.9   mcEnterprise1
 ```
-Now let's access the geth pods and setup the BlockChain
-By following the [puppeth tutorial](https://modalduality.org/posts/puppeth). Follow these steps:
+Now let's access the geth pods and setup the BlockChain by following the [puppeth tutorial](https://modalduality.org/posts/puppeth). Follow these steps:
 
 In the Enterprise cluster, run the following commands to start the geth node:
 ```
@@ -309,7 +306,7 @@ After starting the two web3.js servers, I have provided a script that will gener
 ```
 vim MeshChain/src/initiate_traces.py
 ```
-To run the script, run the following command on a seprate console in one of the clusters.
+To run the script, run the following command on a seprate console in one of the clusters:
 ```
 python MeshChain/src/initiate_traces.py
 ```
