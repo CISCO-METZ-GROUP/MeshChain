@@ -48,19 +48,19 @@ Open source software used:
 # Installation
 #### 1. Clone this repo
 ```
-git clone https://cto-github.cisco.com/aalzugha/MeshChain.git
+git clone https://github.com/CISCO-METZ-GROUP/MeshChain.git
 ```
 #### 1. Install Kubernetes & WeavNet plug-in by following [Kubernetes Installation guide](https://kubernetes.io/docs/tasks/tools/install-kubeadm), or follow these steps.
 
 * You have to install Kubernetes on all the machines (VMs/instances) used in the environment
 
-1.1 Install Docker
+Install Docker
 ```
 sudo su
 apt-get update
 apt-get install -y docker.io
 ```
-> **IMPORTANT!!** If you have proxies on your VMs you need to configure the proxies in docker by following [this link](https://docs.docker.com/config/daemon/systemd/) under the HTTP/HTTPS section.
+* If you have proxies on your VMs you need to configure the proxies in docker by following [this link](https://docs.docker.com/config/daemon/systemd/) under the HTTP/HTTPS section.
 
 If your system uses proxies, you need to inject the proxies to docker.
 ```
@@ -93,7 +93,7 @@ apt-get install -y kubelet kubeadm kubectl
 
 #### 2. After intstalling Kubernetes, you need to set it up.
 
-If the interface you use for Kubernetes management traffic (for example, the
+If the interface you are using for Kubernetes management traffic (for example, the
 IP address used for `kubeadm join`) is not the one that contains the default
 route out of the host, you need to specify the management node IP address in
 the Kubelet config file. Add the following line to
@@ -102,7 +102,7 @@ the Kubelet config file. Add the following line to
 Environment="KUBELET_EXTRA_ARGS=--fail-swap-on=false --feature-gates HugePages=false --node-ip=<node-management-ip-address>"
 ```
 For Example:
-if the VMs IP is 10.10.10.10 the above line would be like 
+if the VM's IP address is 10.10.10.10, the above line would be:
 ```
 Environment="KUBELET_EXTRA_ARGS=--fail-swap-on=false --feature-gates HugePages=false --node-ip=10.10.10.10"
 ```
@@ -111,50 +111,50 @@ Restart kubelet:
 systemctl daemon-reload
 systemctl restart kubelet
 ```
-Initialize the master node by running the following code **NOT** as a root, and change the IP address accordingly
+Initialize the master node by running the following code **NOT** as a root, and change the IP address accordingly:
 ```
 sudo swapoff -a
 sudo kubeadm init --token-ttl 0 --apiserver-advertise-address=10.10.10.10
 ```
-If you ran into errors while running kubeadm command, just use the following steps to reset kubeadm and do kubeadm init again
+If you ran into errors while running kubeadm command, just use the following steps to reset kubeadm and do kubeadm init again:
 ```
 rm -rf $HOME/.kube
 sudo kubeadm reset
 ```
-After initializing the master run the following commands
+After initializing the master run the following commands:
 ```
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
-Then add the K8s network plug-in (I choose WeaveNet for MeshChain)
+Then add the K8s network plug-in (I choose WeaveNet for MeshChain):
 ```
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```
-After running the command ```kubeadm init ...``` , you will have a command to join the worker nodes. it looks like this
+After running the command ```kubeadm init ...``` , you will have a command to join the worker nodes. it looks like this:
 * Run this command if you ran into swap issue ```sudo swapoff -a```
 ```
 kubeadm join 10.10.10.10:6443 --token <token> --discovery-token-ca-cert-hash sha256:<hash>
 ```
-After joining the workers to the master, run this command on the master to check if node are connected or not
+After joining the workers to the master, run this command on the master to check if node are connected or not:
 ```
 kubectl get node
 ```
-The output should be similar to this
+The output should be similar to this:
 ```
 NAME             STATUS    ROLES     AGE       VERSION
 mcEnterprise1    Ready     master    10m       v1.10.4
 mcEnterprise2    Ready     <none>    2m        v1.10.4
 ```
-* If you want to have kubectl autocompele add this line in .bashrc ``` source <(kubectl completion bash) ```, then reboot the master
-Do the same installing process for the other cluser (public cloud), and you should have similar output to this
+* If you want to have kubectl auto completion, add this line in .bashrc ``` source <(kubectl completion bash) ```, then reboot the master node.
+* You need to do the same installing process for both clusers (public cloud/enterprise), and you should have similar output like this:
 ```
 NAME               STATUS    ROLES     AGE       VERSION
 mcPublicCloud1     Ready     master    4m        v1.10.4
 mcPublicCloud2     Ready     <none>    2m        v1.10.4
 ```
 #### 3. Install Istio, in this project, I used Istio 0.7.1. 
-* Do the same process in the master of the other cluster
+* Do the same process in the master of both clusters
 
 Download Istio files by running this
 ```
@@ -180,7 +180,7 @@ kubectl apply -f MeshChain/K8s/istio.yaml
 ```
 Istio elements will be deployed in the master node.
 
-Just to check if istio elements are running, on both clusters run the following
+Just to check if istio elements are running, on both clusters run the following commands:
 ```
 kubectl get pods -n istio-system -owide
 ```
@@ -193,7 +193,7 @@ istio-mixer-d8b98df8f-4mnsv      3/3       Running   0          3m        10.32.
 istio-pilot-74f45f5796-hj8nj     2/2       Running   0          3m        10.32.0.6   mcPublicCloud1
 ```
 Edit Meshchain/K8s/bookinfo.yaml from the repo and change the ```<cluster-name>``` to your cluster name, then run
-* To search and replace all in vim, use ```:%s/<cluster-name>/your-cluster's-name/g```
+* To search and replace all in vim, use: ```:%s/<cluster-name>/your-cluster's-name/g```
 ```
 kubectl create namespace bookinfo
 kubectl create -f <(istioctl kube-inject -f MeshChain/K8s/bookinfo.yaml)
@@ -212,7 +212,7 @@ ent-reviews-v1-b6f5b6bc5-fnjmh        2/2       Running   0          1m        1
 ent-reviews-v2-b7db5b9f-rbgr9         2/2       Running   0          1m        10.32.0.8   mcEnterprise1
 ent-reviews-v3-57c8bfbff9-jsznm       2/2       Running   0          1m        10.44.0.4   mcEnterprise2
 ```
-* Under the column READY it shows 2/2 which means this pods has two containers running (the micro-service and the sidecar)
+* Under the column READY it shows 2/2, which means this pods has two containers running (the micro-service and the sidecar)
 
 To access the application that we just installed in the cluster, you need to get the port number that ```istio-ingress-5c879987bf-j6n7z``` is exposed on. Run the following:
 ```
@@ -330,10 +330,14 @@ To use the postman BlochChain APIs:
 * /get_all_blocks
 * /get_transactions_in_block
 
-And here is a small GUI that we used in the demo. [Meshchain UI]()
+And here is a small GUI that we used in the demo. [Meshchain UI](https://github.com/CISCO-METZ-GROUP/MeshChain-ui)
 
 If something goes wrong with the node, simply kill the two pods, and kubernetes will replace them with new ones. For example:
 ```
 kubectl delete pod -n blockchain geth
 ```
 After that, you need to set up the geth nodes again.
+
+# License
+
+Apache License 2.0
