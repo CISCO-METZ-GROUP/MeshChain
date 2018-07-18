@@ -14,8 +14,8 @@ A distributed tracing solution for service mesh using BlockChain.
 * [Architecture](#architecture)
 * [Advantages](#advantages)
 * [Installation](#installation)
-* [Usage](#Usage)
-* [License](#License)
+* [Usage](#usage)
+* [License](#license)
 
 # Problem
 In a multi-cloud environment, observability is important between hybrid cloud parties for troubleshooting, optimization, and analytics. Applications are broken down into micro-services, which could be deployed on multiple hybrid cloud networks. Each party needs a way to verify that the applications deployed on the other party are running smoothly. Moreover, this verification data should be shared between the environments in an immutable storage.
@@ -157,7 +157,7 @@ mcPublicCloud2     Ready     <none>    2m        v1.10.4
 #### 3. Install Istio, in this project, I used Istio 0.7.1. 
 * Do the same process in the master of both clusters
 
-Download Istio files by running this
+Download Istio files by running:
 ```
 wget https://github.com/istio/istio/releases/download/0.7.1/istio-0.7.1-linux.tar.gz
 tar -xzf istio-0.7.1-linux.tar.gz 
@@ -185,7 +185,7 @@ Just to check if istio elements are running, on both clusters run the following 
 ```
 kubectl get pods -n istio-system -owide
 ```
-the output should be similar to this
+the output should be similar to this:
 ```
 NAME                             READY     STATUS    RESTARTS   AGE       IP          NODE
 istio-ca-77d7fb5cb9-4snrr        1/1       Running   0          3m        10.32.0.7   mcPublicCloud1
@@ -199,11 +199,11 @@ Edit Meshchain/K8s/bookinfo.yaml from the repo and change the ```<cluster-name>`
 kubectl create namespace bookinfo
 kubectl create -f <(istioctl kube-inject -f MeshChain/K8s/bookinfo.yaml)
 ```
-Check if the pods are running with the sidecars
+Check if the pods are running with the sidecars.
 ```
 kubectl get pods -n bookinfo -owide
 ```
-The output should be similar to this
+The output should be similar to this:
 ```
 NAME                                  READY     STATUS    RESTARTS   AGE       IP          NODE
 ent-details-v1-7bc7c59c8c-m7z8s       2/2       Running   0          1m        10.44.0.2   mcEnterprise2
@@ -215,11 +215,11 @@ ent-reviews-v3-57c8bfbff9-jsznm       2/2       Running   0          1m        1
 ```
 * Under the column READY it shows 2/2, which means this pods has two containers running (the micro-service and the sidecar)
 
-To access the application that we just installed in the cluster, you need to get the port number that ```istio-ingress-5c879987bf-j6n7z``` is exposed on. Run the following:
+To access the application that we just installed in the cluster, you need to get the port number that ```istio-ingress-5c879987bf-j6n7z``` is exposed on. Run the following command:
 ```
 kubectl get service -n istio-system 
 ```
-The output should be similar to the this
+The output should be similar to the this:
 ```
 NAME            TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                                                             AGE
 istio-ingress   LoadBalancer   10.106.59.14     <pending>     80:31515/TCP,443:30128/TCP                                          2d
@@ -289,7 +289,7 @@ Change [::] to the IP of the cluster and 3000 to 30001 so it would be like "enod
 admin.addPeer({ENODE-URL})
 ```
 
-After adding the two nodes you can check if they are added or not, by running the following:
+After adding the two nodes you can check if they are added or not, by running the following command:
 ```
 admin.peers
 ```
@@ -309,7 +309,7 @@ After starting the two web3.js servers, I have provided a script that will gener
 ```
 vim MeshChain/src/initiate_traces.py
 ```
-To run the script, run the following on a seprate console in one of the clusters
+To run the script, run the following command on a seprate console in one of the clusters.
 ```
 python MeshChain/src/initiate_traces.py
 ```
@@ -318,14 +318,14 @@ Now you can interact with the BlockChain using the postman collections provided 
 # Usage
 
 To use the postman BlochChain APIs:
-1. Need to change the ip address for the request to your clusters' ip addresses.
-2. The sequence of actions to write to the BlockChain:
+1. First, you need to change the ip address for the request to your clusters' ip addresses.
+2. The sequence of actions to write to the BlockChain are:
 * /unlock_coinbase_account
 * /create_auditchain
 * /zipkin_poll_start
-3. To stop writing into the BlockChain
+3. To stop writing into the BlockChain:
 * /zipkin_poll_stop
-4. To retrieve data from the BlochChain
+4. To retrieve data from the BlochChain:
 * /query_trace_data
 * /get_all_traces
 * /get_all_blocks
