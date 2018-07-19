@@ -2,7 +2,7 @@
 A distributed tracing solution for service mesh using BlockChain.
 
 # Team
-+ Ahmad Khalid Alzughaibi (leading software engineer) ahmad.alz.git@gmail.com
++ Ahmad Khalid Alzughaibi (Project Lead) ahmad.alz.git@gmail.com
 + Noha Gazzaz
 + Rohan Dhesikan
 + Zhaoxing (Andrew) Li
