@@ -2,7 +2,7 @@
 A distributed tracing solution for service mesh using BlockChain.
 
 # Team
-+ Ahmad Khalid M Alzughaibi
++ Ahmad Khalid Alzughaibi (leading software engineer) ahmad.alz.git@gmail.com
 + Noha Gazzaz
 + Rohan Dhesikan
 + Zhaoxing (Andrew) Li
@@ -262,10 +262,11 @@ Now let's access the geth pods and setup the BlockChain by following the [puppet
 
 In the Enterprise cluster, run the following commands to start the geth node:
 ```
-kubectl exec -it -n blockchain geth bash
+kubectl exec -it -n blockchain geth-766f8b47db-4vphq bash
 cd testnet
 ../geth --datadir node1 --port 3000 --syncmode "full"
 ```
+> In the Public cloud cluster, you will need to run the same, except instead of "node1" it would be "node2"
 
 On a second console, connect to the geth node's web3 console:
 ```
@@ -296,7 +297,6 @@ Then start mining on both clusters
 ```
 miner.start(0)
 ```
-
 #### 6. On a third console, start the web3.js server
 ```
 kubectl exec -it -n blockchain geth bash
