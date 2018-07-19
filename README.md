@@ -270,7 +270,7 @@ cd testnet
 
 On a second console, connect to the geth node's web3 console:
 ```
-kubectl exec -it -n blockchain geth bash
+kubectl exec -it -n blockchain geth-766f8b47db-4vphq bash
 cd testnet
 ../geth attach ipc:node1/geth.ipc
 ```
@@ -299,7 +299,7 @@ miner.start(0)
 ```
 #### 6. On a third console, start the web3.js server
 ```
-kubectl exec -it -n blockchain geth bash
+kubectl exec -it -n blockchain geth-766f8b47db-4vphq bash
 node app.js
 ```
 After starting the two web3.js servers, I have provided a script that will generate traces for you every 30 seconds. You will need to change <Cluster-master's-IP> to your clusters' IP addresses and the port number that you have got from ```istio-ingress```.
@@ -332,7 +332,7 @@ And here is a small GUI that we used in the demo. [Meshchain UI](https://github.
 
 If something goes wrong with the node, simply kill the two pods, and kubernetes will replace them with new ones. For example:
 ```
-kubectl delete pod -n blockchain geth
+kubectl delete pod -n blockchain geth-766f8b47db-4vphq
 ```
 After that, you need to set up the geth nodes again.
 
